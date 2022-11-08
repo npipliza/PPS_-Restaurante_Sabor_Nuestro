@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="light toolbar">
+    <ion-button color="light" slot="end" style="margin-right: 1em;" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+<ion-content class="fondof">
+  <div style="display:flex; flex-direction: column;"><br><br>
+    <h1 class="text-dark" style="text-align: center;color: var(--ion-color-dark);">¡Bienvenido {{currentUser.nombre}} ! </h1>
+    <div class="qr-item" (click)="ScanQr()"><br>
+      <img width="300" src="https://cdn-icons-png.flaticon.com/512/3080/3080237.png"><br>
+      <p class="text-dark">{{qrBtnText}}</p>
+    </div>
+    <ion-row>
+      <div class="menu-item" *ngIf="showChatBtn" (click)="goToChat()">
+        <ion-icon name="chatbubbles-outline"></ion-icon>
+        <p class="text-dark">Consulta al Mozo</p>
+      </div>
+      <div class="menu-item" (click)="navigateCarta()" *ngIf="showCartaBtn">
+        <ion-icon name="fast-food-outline"></ion-icon>
+        <p class="text-dark">Hacer pedido</p>
+      </div>
+      <div class="menu-item" (click)="navigateDetalle()" *ngIf="showDetalleBtn">
+        <ion-icon name="fast-food-outline"></ion-icon>
+        <p class="text-dark">Detalle pedido</p>
+      </div>
+      <div class="menu-item" *ngIf="showGamesBtn" (click)="goToGame()">
+        <ion-icon name="game-controller-outline"></ion-icon>
+        <p class="text-dark">Juegos</p>
+      </div>
+      <div class="menu-item" *ngIf="showEncuestaBtn" (click)="goToEncuesta()">
+        <ion-icon name="document-text-outline"></ion-icon>
+        <p class="text-dark">Encuesta</p>
+      </div>
+      <div class="menu-item" *ngIf="showStatsBtn" (click)="goToEstadisticas()">
+        <ion-icon name="stats-chart-outline"></ion-icon>
+        <p class="text-dark">Estadísticas</p>
+      </div>
+    </ion-row>
+  </div>
+</ion-content>
+<ngx-spinner type=null template="<img src='assets/spinner_fueguito.gif' height='125'/>"><p style="color: rgb(0, 0, 0)" > Cargando... </p></ngx-spinner>

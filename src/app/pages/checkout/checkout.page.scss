@@ -1,0 +1,19 @@
+ion-list{
+    background:none;
+    ion-item{
+        --background: none;
+        ion-label{
+            margin-left: 1em;
+        }
+        strong{
+            font-size: 1.5em;
+        }
+    }
+}
+
+ion-toolbar{
+    ion-icon{
+        font-size: 2em;
+        margin-right: 0.5em;
+    }
+}

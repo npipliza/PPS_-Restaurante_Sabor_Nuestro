@@ -1,0 +1,99 @@
+<ion-header>
+  <ion-toolbar color="light toolbar">
+    <ion-back-button defaultHref="login" slot="start"></ion-back-button>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content fullscreen class="fondoWeb">
+    <div class="fondoWeb"><div id="login1"><div id="titulo">
+  
+  <div class="form-register">
+    <div [ngSwitch]="formSelected">
+      <form [formGroup]="form1" (ngSubmit)="goTo(2)" *ngSwitchCase="1"><br>
+        <div style="display: flex;justify-content: center;align-items: center;flex-direction: column;">
+          <div class="mx-auto d-block circular--portrait" (click)="tomarFotoPerfil()">
+            <img width="100" [src]="user.img_src" *ngIf="user.img_src != null" (click)="tomarFotoPerfil()"/>
+            <img width="100" [src]="imagenPerfil" *ngIf="user.img_src == null" (click)="tomarFotoPerfil()"/>
+          </div>  
+          <div class="text-center">
+            <small class="ion-padding-start ion-padding-end text-dark">*Debes cargar tu foto</small>
+          </div> 
+        </div>
+        <div class="ml-auto" style="margin-top: 1em;">
+          <ion-label position="fluid" class="text-dark"><b>ANÓNIMO</b></ion-label><br><ion-toggle (click)="setAnonimo()"></ion-toggle>     
+        </div>       
+
+        <ion-item color="" fill="outline" class="input-wrapper mt-2">
+        <ion-icon color="--ion-color-dark" name="person-outline"></ion-icon>
+          <ion-input type="text" formControlName="name" placeHolder=" Nombre *" [(ngModel)]="user.nombre"></ion-input>
+        </ion-item>
+        <ion-row class="errors">
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getNameControl().errors?.required && getNameControl().touched">El nombre es obligatorio</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getNameControl().errors?.minlength && getNameControl().touched">Mínimo 2 caracteres</small>
+        </ion-row>
+
+        <ion-item color="" fill="outline" class="input-wrapper mt-2">
+        <ion-icon color="--ion-color-dark" name="person-outline"></ion-icon>
+          <ion-input type="text" formControlName="lastName" placeHolder=" Apellido *" [(ngModel)]="user.apellido" [disabled]="anonimo"></ion-input>
+        </ion-item>
+        <ion-row class="errors" *ngIf="!anonimo">
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getLastNameControl().errors?.required && getLastNameControl().touched">El apellido es obligatorio</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf=" getLastNameControl().errors?.minlength && getLastNameControl().touched">Mínimo 2 caracteres</small>
+        </ion-row>
+
+        <ion-item color="" fill="outline" class="input-wrapper mt-2">
+        <ion-icon color="--ion-color-dark" name="person-outline"></ion-icon>
+          <ion-input type="text" formControlName="dni" placeHolder=" DNI *" [(ngModel)]="user.dni" [disabled]="anonimo"></ion-input>
+        </ion-item>
+        <ion-row class="errors" *ngIf="!anonimo">
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getDniControl()?.errors?.required && getDniControl()?.touched" >El DNI es obligatorio</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="(getDniControl()?.errors?.min || getDniControl()?.errors?.max) && getDniControl()?.touched && !getDniControl()?.errors?.pattern">Ingrese un DNI válido</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getDniControl()?.errors?.pattern && getDniControl()?.touched">Sólo se permiten números</small>
+        </ion-row><br>
+
+        <div class="actions">
+          <p class="ion-padding-start ion-padding-end"><button expand="block" class="btn btn-dark" (click)="escanearClick()">ESCANEAR DNI<ion-icon style="margin-left: 1rem" name="qr-code-outline"></ion-icon></button></p>
+          <p class="ion-padding-start ion-padding-end"><button type="submit" expand="block" class="btn btn-dark" [disabled]="isForm1Invalid()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SIGUIENTE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
+        </div>
+      </form><br>
+
+      <form [formGroup]="form2" (ngSubmit)="registrarseClick()" *ngSwitchCase="2">
+        <div class="mx-auto d-block circular--portrait" (click)="tomarFotoPerfil()" style="display: flex; justify-content: center; align-items: center; margin: 0 auto; margin-bottom: 2em; margin-top: 2em;">
+          <img width="100" [src]="user.img_src" *ngIf="user.img_src != null" />
+        </div>
+
+        <ion-item color="" fill="outline" class="input-wrapper">
+          <ion-icon color="--ion-color-dark" name="mail-outline"></ion-icon><ion-input type="email" placeHolder=" Correo electrónico *" formControlName="email" [(ngModel)]="user.correo"></ion-input>
+        </ion-item>
+        <ion-row class="errors">
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getEmailControl().errors?.required && getEmailControl().touched">El correo es obligatorio</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getEmailControl().errors?.email && getEmailControl().touched">Formato incorrecto</small>
+        </ion-row>
+
+        <ion-item class="input-wrapper mt-2">
+          <ion-icon color="--ion-color-dark" name="lock-closed-outline"></ion-icon><ion-input type="password" placeHolder=" Contraseña *" formControlName="pass1"> </ion-input>
+        </ion-item>
+        <ion-row class="errors">
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getPass1Control().errors?.required && getPass1Control().touched">La contraseña obligatoria</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf=" getPass1Control().errors?.minlength && getPass1Control().touched">Mínimo 6 caracteres</small>
+        </ion-row>
+
+        <ion-item color="" class="input-wrapper mt-2">
+        <ion-icon color="--ion-color-dark" name="lock-closed-outline"></ion-icon><ion-input type="password" placeHolder=" Confirmar contraseña *" formControlName="pass2"> </ion-input>
+        </ion-item>
+        <ion-row class="errors">
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getPass2Control().errors?.required && getPass2Control().touched">La confirmación es obligatoria</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getPass2Control().errors?.minlength && getPass2Control().touched">Mínimo 6 caracteres</small>
+          <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getPass2Control()?.errors?.mustMatch && getPass2Control()?.touched">Las contraseñas deben coincidir</small>
+        </ion-row>
+
+        <div class="actions" style="margin-top: 3em;">
+          <p class="ion-padding-start ion-padding-end"><button type="submit" expand="block" color="" class="btn btn-dark" [disabled]="form2.invalid">REGISTRARME</button></p>
+        </div><br>
+      </form>
+    </div>
+  </div>
+</div></div></div>
+</ion-content>
+<ngx-spinner type=null template="<img src='assets/spinner_fueguito.gif' height='125'/>"><p style="color: white" > Cargando... </p></ngx-spinner>
+

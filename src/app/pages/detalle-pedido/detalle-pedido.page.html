@@ -1,0 +1,69 @@
+<ion-header>
+  <ion-toolbar color="medium">
+    <ion-back-button defaultHref="mesas" slot="start"></ion-back-button>
+    <ion-title>Detalle de pedido</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+<div *ngIf="isLoaded" style="padding: 10px 10px 10px 10px;">
+
+  <h1 *ngIf="isMozo && pedido.listoParaServir && pedido.estado == 'ESPERANDO_PEDIDO'" class="attention heartbeat">¡Todo listo para servir!</h1>
+  <p>Estado:         
+    <ion-chip color="danger">
+    <ion-label color="danger">{{pedido.estado}}</ion-label>
+    </ion-chip>
+  </p>
+  <p>Nro mesa: {{pedido.nro_mesa}}</p>
+  <p *ngIf="pedido.demora_estimada">Demora: {{pedido.demora_estimada}} min</p>
+  <p *ngIf="pedido.productos">Total: ${{pedido.total}}</p>
+  <ion-list *ngIf="pedido.productos">
+    <ion-item *ngFor="let item of pedido.productos; let index=index">
+      <ion-avatar>
+        <img [src]="item.img_src">
+      </ion-avatar>
+      <ion-label>
+        <h1>{{item.nombre}}</h1>
+        <ion-row>
+          <h2>Estado: </h2>
+          <ion-badge color="medium">{{item.estado}}</ion-badge>
+          <h2 style="margin-left:1em"><ion-icon name="timer-outline"></ion-icon>{{item.tiempo_elaboracion}} min</h2>
+        </ion-row>
+      </ion-label>
+      <strong>X {{item.cantidad}}</strong>
+
+      
+    </ion-item>
+  </ion-list>
+  <div *ngIf="isMozo" style="margin-top: 1em;">
+    <ion-button *ngIf="pedido.estado == 'SENTADO'" (click)="navigateCarta()">
+      Tomar pedido
+    </ion-button>
+    <ion-button *ngIf="pedido.estado == 'CONFIRMANDO_PEDIDO'" (click)="AprobarPedido()">
+      Aprobar pedido
+    </ion-button>
+    <ion-button *ngIf="pedido.listoParaServir && pedido.estado == 'ESPERANDO_PEDIDO'" (click)="ServirPedido()">
+      Servir
+    </ion-button>
+    <ion-button *ngIf="pedido.estado == 'PAGANDO'" (click)="CerrarMesa()">
+      Aprobar pago
+    </ion-button>
+    <ion-button (click)="goToChat()">
+      Chat
+    </ion-button>
+    
+  </div>
+  <div *ngIf="!isMozo">
+    <ion-button *ngIf="pedido.estado == 'PEDIDO_ENTREGADO'" (click)="ConfirmarRecepcion()">
+      Confirmar recepcion
+    </ion-button>
+    <ion-button *ngIf="pedido.estado == 'COMIENDO'" (click)="SolicitarCuenta()">
+      Solicitar cuenta
+    </ion-button>
+    <div *ngIf="pedido.estado == 'PAGANDO'" style="display:flex; flex-direction:column; justify-content:center; align-items:center">
+      <h1>En breve el mozo estara en su mesa</h1>
+      <h1>¡Gracias por venir!</h1>
+    </div>
+  </div>
+</div>
+</ion-content>

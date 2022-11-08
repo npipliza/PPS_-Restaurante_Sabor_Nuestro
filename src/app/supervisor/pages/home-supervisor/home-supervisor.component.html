@@ -1,0 +1,35 @@
+<ion-header >
+  <ion-toolbar color="light toolbar">
+    <ion-button color="light" slot="end" style="margin-right: 1em;" (click)="logout()"><ion-icon name="log-out-outline"></ion-icon></ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondof">
+  <div class="fuego" >
+    <img src="../../../../assets/images/icon.png" width="100">
+  </div><br>
+    <div class="container-fluid mx-auto contenedor-gral" id="fondo"><br>
+      <ion-row>
+        <div align="center">
+          <img src="../../../../assets/icon/admision_clientes.png" >
+        <div class="menu-item" [routerLink]="['/supervisor/clientes']">
+          <img src="https://cdn-icons-png.flaticon.com/512/921/921296.png" width="100">
+        </div></div><br>
+        <div align="center">
+          <img src="../../../../assets/icon/gestion_usuarios.png">
+        <div class="menu-item" [routerLink]="['/supervisor/users']">
+          <img src="https://cdn-icons-png.flaticon.com/512/3952/3952931.png" width="100">
+        </div></div><br>
+        <div align="center">
+          <img src="../../../../assets/icon/gestion_mesas.png">
+        <div class="menu-item" [routerLink]="['/altamesas']">
+          <img src="https://cdn-icons-png.flaticon.com/512/7505/7505344.png" width="100">
+        </div></div><br>
+        <div align="center">
+          <img src="../../../../assets/icon/estadisticas.png">
+        <div class="menu-item" [routerLink]="['/estadisticas']">
+          <img src="https://cdn-icons-png.flaticon.com/512/3050/3050208.png" width="100"><br>
+        </div></div>
+      </ion-row>       
+    </div>
+</ion-content>

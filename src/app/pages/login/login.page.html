@@ -1,0 +1,37 @@
+<ngx-spinner type=null template="<img src='assets/spinner_fueguito.gif' height='125'/>"><p style="color: white" > Cargando... </p></ngx-spinner>
+<div class="container-fluid mx-auto contenedor-gral">
+  <div class="fondoWeb"><br><br><div id="login1"><div id="titulo">
+    <img src="../../../assets/images/icon.png" alt="" width="100"/><br><br>
+    <form [formGroup]="loginForm" class="text-center">
+      <ion-item lines="full" class="input-wrapper">
+        <ion-input type="email" placeHolder="Correo electrónico" formControlName="email" required></ion-input>
+      </ion-item>
+      <ion-row class="hiddenItems">
+        <small *ngIf="loginForm.get('email').hasError('required') && (loginForm.get('email').dirty || loginForm.get('email').touched)" style="color: var(--ion-color-danger)">Por favor, ingrese su correo.</small>
+        <small *ngIf="loginForm.get('email').hasError('email')" style="color: var(--ion-color-danger)">Ingrese un correo valido.</small>
+      </ion-row>
+      <ion-item lines="full" class="input-wrapper mt-2">
+      <ion-input type="password" required placeHolder="Contraseña" formControlName="password"></ion-input>
+      </ion-item>
+      <ion-row class="hiddenItems">
+        <ion-icon *ngIf="showErrors" name="alert-circle-outline"></ion-icon><small *ngIf="showErrors">{{message}}</small>
+        <small *ngIf="loginForm.get('password').hasError('required') && (loginForm.get('password').dirty || loginForm.get('password').touched)" style="color: var(--ion-color-danger)" [ngClass]="loginForm.get('password').hasError('required') && loginForm.get('password').touched ? 'visible' : 'hidden'">Por favor, ingrese una constraseña.</small>
+        <small *ngIf="loginForm.get('password').hasError('maxlength') && (loginForm.get('password').dirty || loginForm.get('password').touched)" [ngClass]="loginForm.get('password').hasError('maxlength') && loginForm.get('password').touched ? 'visible' : 'hidden'" style="color: var(--ion-color-danger)">La contraseña no debe contener mas de 6 caracteres.</small>
+      </ion-row><br>
+      <div class="container text-center">
+        <button (click)="Login()" type="submit" class="btn btn-dark" expand="block" [disabled]="!loginForm.valid">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> INGRESAR </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button><br><br>
+        <button (click)="goToRegister()" class="btn btn-dark" expand="block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<b> REGISTRARME </b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+      </div>
+    </form><br>
+    <div class="row"><div class="contenedor-usuarios">
+      <ion-slides pager="true" scrollbar="true">
+        <ion-slide><button class="btn btn-dark" (click)="testUser(6)"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; CLIENTE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></button><br></ion-slide>
+        <ion-slide><button class="btn btn-dark" (click)="testUser(3)"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ANÓNIMO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></button><br></ion-slide>
+        <ion-slide><button class="btn btn-dark" (click)="testUser(4)"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MESTRE &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></button><br></ion-slide>
+        <ion-slide><button class="btn btn-dark" (click)="testUser(1)"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; SUPERVISOR &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></button><br></ion-slide>
+        <ion-slide><button class="btn btn-dark" (click)="testUser(2)"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; COCINERO &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></button><br></ion-slide>
+        <ion-slide><button class="btn btn-dark" (click)="testUser(2)"><b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; BARTENDER &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</b></button><br></ion-slide>
+        <br><br><br><br></ion-slides>
+    </div></div><br><br>
+  </div></div></div>
+</div>

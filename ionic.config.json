@@ -1,0 +1,12 @@
+{
+  "name": "PPS-Sabor-Nuestro-app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "plugins":{
+    "PushNotifications": {
+      "presentationOptions": ["badge", "sound", "alert"]
+    }
+  },
+  "type": "angular"
+}

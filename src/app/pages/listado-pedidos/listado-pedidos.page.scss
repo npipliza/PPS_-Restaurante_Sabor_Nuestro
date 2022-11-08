@@ -1,0 +1,9 @@
+ion-list{
+    background:none;
+    ion-item{
+        --background: none;
+        ion-label{
+            margin-left: 1em;
+        }
+    }
+}

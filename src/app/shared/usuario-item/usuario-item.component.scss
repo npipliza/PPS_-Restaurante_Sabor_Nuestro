@@ -1,0 +1,17 @@
+.red {
+    color: red;
+}
+
+.green {
+    color: green;
+}
+
+ion-item{
+    --background: transparent;
+    .icon{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 1.6em;
+    }
+}
