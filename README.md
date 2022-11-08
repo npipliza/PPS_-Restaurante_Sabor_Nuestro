@@ -1,6 +1,6 @@
 # Sabor_Nuestro_2022
 
-<img src="readmeFotos/logo_readme.png" width="1000">
+<img src="readmeFotos/ff.png" width="1000">
 
 ## Integrantes
 ##### Macarena López Podestá
