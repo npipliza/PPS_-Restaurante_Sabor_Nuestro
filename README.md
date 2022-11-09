@@ -17,7 +17,7 @@
 ✔ Alta producto -                                 Macarena (en proceso)  
 ✔ Subida de fotos a Firestorage -                 Macarena (terminado) 
 ✔ Encuesta cliente -                              Nadia    (en proceso) 
-✔ Encuesta empelado -                             Macarena (en proceso)   
+✔ Encuesta empleado -                             Macarena (en proceso)   
 ✔ Encuesta supervisor -                           Macarena (en proceso)   
 ✔ Ingreso del local -                             Nadia    (terminado) 
 ✔ QR ingreso al local -                           Macarena (en proceso)  
