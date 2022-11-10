@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-toolbar color="light toolbar">
+    <ion-back-button slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondof"><br>
+  <img src="../../../../assets/icon/estadisticas.png"><br>
+
+  <ion-segment  [(ngModel)]="selected" color="light">
+    <ion-segment-button value="friends" (click)="ShowEmpleados()">
+      <ion-label class="medium">Empleados</ion-label>
+    </ion-segment-button>
+    <ion-segment-button value="supervisor" (click)="ShowSupervisor()">
+      <ion-label class="medium">Supervisor</ion-label>
+    </ion-segment-button>
+  </ion-segment>
+  <div [ngStyle]="{'display': showSupervisor == true ? 'block' : 'none'}">
+    <canvas #pieChart></canvas>
+    <canvas #barChart></canvas>
+    <canvas #barChartVertical></canvas>
+    <canvas #donutChart></canvas>
+
+    <h1>Comentarios</h1>
+    <ion-slides>
+      <ion-slide *ngFor="let report of reportes">
+        <div class="slide">
+          <h2>Comentario sobre {{report.userName}}</h2>
+          <p>{{report.comentarios}}</p>
+        </div>
+      </ion-slide>
+    </ion-slides>
+  </div>
+  <div [ngStyle]="{'display': showEmpleados == true ? 'block' : 'none'}">
+    <canvas #pieChartEmp></canvas>
+    <canvas #barChartEmp></canvas>
+    <canvas #barChartVerticalEmp></canvas>
+    <canvas #donutChartEmp></canvas>
+  </div>
+</ion-content>

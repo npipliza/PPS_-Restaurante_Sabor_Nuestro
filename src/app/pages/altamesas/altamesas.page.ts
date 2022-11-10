@@ -15,9 +15,9 @@ import { UserService } from 'src/app/services/user.service';
 export class AltamesasPage implements OnInit {
 
   public mesasForm: FormGroup;
-  public currentUser: Usuario; 
-  public nuevaMesa: Mesa = new Mesa(); 
-  public mesasList: Mesa[]; 
+  public currentUser: Usuario; //Datos de la sesion
+  public nuevaMesa: Mesa = new Mesa(); //Mesa a guardar
+  public mesasList: Mesa[]; //Toda las mesas que existen.
   constructor(private authService: AuthService, private fromBuilder: FormBuilder, public userSrv: UserService, public mesasSrv: MesasService) {
     this.mesasForm = this.fromBuilder.group({
       nro_mesa: [this.nuevaMesa.nro_mesa, Validators.compose([Validators.required])],
@@ -29,7 +29,9 @@ export class AltamesasPage implements OnInit {
 
   ngOnInit() {
     this.nuevaMesa = new Mesa();
+    //Recupera datos de sesion
     this.currentUser = JSON.parse(localStorage.getItem("userData"));
+    //Obtengo las mesas existenetes para obtener el nro de la nueva mesa
     const mesas$ = this.mesasSrv.TraerMesas().subscribe( mesas =>{
       console.log(mesas);
       this.mesasList = mesas;
@@ -40,6 +42,7 @@ export class AltamesasPage implements OnInit {
     console.log(this.currentUser);
   }
 
+  //Guarda una nueva mesa.
   GuardarNuevaMesa(){
     this.nuevaMesa.nro_mesa = this.mesasForm.get('nro_mesa').value;
     this.nuevaMesa.comensales = this.mesasForm.get('comensales').value;
@@ -48,13 +51,15 @@ export class AltamesasPage implements OnInit {
     if(resp){
       console.log("Guardo y entro")
       this.ResetearFormulario();
+      //exito al guardar
     }
     else{
+      //error al guardar
     }
   }
 
   ResetearFormulario(){
-    this.mesasForm.reset();
+    this.mesasForm.reset(); //Reseteo form
     this.nuevaMesa = new Mesa();
     let mesanuevanro = this.mesasList.length + 1;
     this.mesasForm.get('comensales').setValue(null);
