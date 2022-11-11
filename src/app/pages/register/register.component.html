@@ -22,7 +22,6 @@
         <div class="ml-auto" style="margin-top: 1em;">
           <ion-label position="fluid" class="text-dark"><b>ANÓNIMO</b></ion-label><br><ion-toggle (click)="setAnonimo()"></ion-toggle>     
         </div>       
-
         <ion-item color="" fill="outline" class="input-wrapper mt-2">
         <ion-icon color="--ion-color-dark" name="person-outline"></ion-icon>
           <ion-input type="text" formControlName="name" placeHolder=" Nombre *" [(ngModel)]="user.nombre"></ion-input>
@@ -63,7 +62,7 @@
         </div>
 
         <ion-item color="" fill="outline" class="input-wrapper">
-          <ion-icon color="--ion-color-dark" name="mail-outline"></ion-icon><ion-input type="email" placeHolder=" Correo electrónico *" formControlName="email" [(ngModel)]="user.correo"></ion-input>
+          <ion-icon color="--ion-color-dark" name="mail-outline"></ion-icon><ion-input type="email" placeHolder=" Correo electrónico *" formControlName="email" [disabled]="anonimo" [(ngModel)]="user.correo"></ion-input>
         </ion-item>
         <ion-row class="errors">
           <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getEmailControl().errors?.required && getEmailControl().touched">El correo es obligatorio</small>
@@ -71,7 +70,7 @@
         </ion-row>
 
         <ion-item class="input-wrapper mt-2">
-          <ion-icon color="--ion-color-dark" name="lock-closed-outline"></ion-icon><ion-input type="password" placeHolder=" Contraseña *" formControlName="pass1"> </ion-input>
+          <ion-icon color="--ion-color-dark" name="lock-closed-outline"></ion-icon><ion-input type="password" placeHolder=" Contraseña *" [disabled]="anonimo" formControlName="pass1"> </ion-input>
         </ion-item>
         <ion-row class="errors">
           <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getPass1Control().errors?.required && getPass1Control().touched">La contraseña obligatoria</small>
@@ -79,7 +78,7 @@
         </ion-row>
 
         <ion-item color="" class="input-wrapper mt-2">
-        <ion-icon color="--ion-color-dark" name="lock-closed-outline"></ion-icon><ion-input type="password" placeHolder=" Confirmar contraseña *" formControlName="pass2"> </ion-input>
+        <ion-icon color="--ion-color-dark" name="lock-closed-outline"></ion-icon><ion-input type="password" placeHolder=" Confirmar contraseña *" [disabled]="anonimo" formControlName="pass2"> </ion-input>
         </ion-item>
         <ion-row class="errors">
           <small style="color: var(--ion-color-danger)" class="ion-padding-start ion-padding-end" *ngIf="getPass2Control().errors?.required && getPass2Control().touched">La confirmación es obligatoria</small>
@@ -95,5 +94,4 @@
   </div>
 </div></div></div>
 </ion-content>
-<ngx-spinner type=null template="<img src='assets/spinner_fueguito.gif' height='125'/>"><p style="color: white" > Cargando... </p></ngx-spinner>
-
+<ngx-spinner type=null template="<img src='assets/spinner_fueguito.gif' height='125'/>"><p style="color: rgb(0, 0, 0)" > Cargando... </p></ngx-spinner>

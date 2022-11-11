@@ -12,6 +12,8 @@ import { NotificationsService } from 'src/app/services/notifications/notificatio
 import { StorageService } from 'src/app/services/storage.service';
 import { ToastService } from 'src/app/services/toast/toast.service';
 import { UserService } from 'src/app/services/user.service';
+import emailjs, { EmailJSResponseStatus } from 'emailjs-com';
+
 declare let window: any;
 
 @Component({
@@ -28,8 +30,12 @@ export class RegisterComponent implements OnInit {
   uploadProgress: number;
   hasErrorPerfil: boolean;
   anonimo:boolean;
+ 
+  anonimoAux:boolean;
   showFaltaImg: boolean;
-
+  mensaje:string="";
+  correo:string="";
+  random=0;
   constructor(
     private notificationService:NotificationsService,
     private authService: AuthService,
@@ -114,6 +120,7 @@ export class RegisterComponent implements OnInit {
   }
 
   async registrarseClick() {
+    emailjs.init("PTjtXE68V_2NFAQOu");
     this.spinner.show()
     this.authService
       .CreaterUser(this.user.correo, this.getPass1Control().value)
@@ -125,8 +132,21 @@ export class RegisterComponent implements OnInit {
           "Hay un nuevo cliente que espera la aprobación de su registro",
           "supervisor"
         );
-        this.toastSrv.presentToast("Registro exitoso!", 2500, "success");
-        this.router.navigate(['login']);
+        this.mensaje="Tu cuenta esta en proceso de aprobación";
+        emailjs.send('default_service', 'template_doiem9o',{"nombre":this.user.nombre,"email":this.user.correo,"mensaje":this.mensaje})
+        .then((result: EmailJSResponseStatus) => {
+          console.log(result.text);
+        }, (error) => {
+          console.log(error.text);
+        });
+        if(this.user.aceptado){
+          this.router.navigate(['home-clientes']);
+        }else
+        {
+          this.toastSrv.presentToast("Tu cuenta esta en proceso de aprobación.", 2500, "success");
+          this.router.navigate(['login']);
+        }
+        
       })
       .catch((err) => {
         console.log(err);
@@ -136,6 +156,9 @@ export class RegisterComponent implements OnInit {
       .finally(() => {
       });
   }
+
+
+
 
   async presentToast(message: string, color: string) {
     const toast = await this.toastController.create({
@@ -238,25 +261,37 @@ export class RegisterComponent implements OnInit {
   }
 
   setAnonimo(){
-    this.anonimo = !this.anonimo;
+    if(this.anonimo)
+    {
+      this.anonimoAux=false;
+    }else
+    {
+      this.anonimoAux=true;
+    }
+    this.anonimo=this.anonimoAux;
   }
 
   isForm1Invalid():boolean{
-    let invalid:boolean = true;
+    let invalid:boolean = this.anonimo;
     if(this.anonimo){
-      if(this.user.img_src != null && this.getNameControl().valid){
+      this.random=Math.floor(Math.random() * 100) + 1;
+      this.correo="anonimo"+this.random+"@gmail.com";
+      this.user.correo=this.correo;
+      this.form2.controls['pass1'].setValue('qweqwe')
+      this.form2.controls['pass2'].setValue('qweqwe')
+      this.user.aceptado=true;
+  
+       if(this.user.img_src != null && this.getNameControl().valid){
         invalid = false;
-      }
-      else{
+      }else
+      {
         invalid = true;
-        if (this.user.img_src == null) {
-          this.toastSrv.presentToast("Debe cargar una imagen antes de continuar", 3000, "warning");
-        }
       }
+
     }else{
       invalid = this.form1.invalid;
     }
-
+ 
     return invalid;
   }
 }

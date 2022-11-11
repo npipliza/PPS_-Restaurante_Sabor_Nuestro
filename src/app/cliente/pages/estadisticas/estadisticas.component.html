@@ -1,0 +1,43 @@
+<ion-header>
+  <ion-toolbar color="light toolbar">
+    <ion-back-button (click)="return()" slot="start"></ion-back-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen color="fondof">
+  <img src="../../../../assets/icon/estadisticas.png"><br>
+
+  <div class="container">    
+    <div>
+      <canvas #pieChart></canvas>
+      <canvas #barChart></canvas>
+      <canvas #barChartVertical></canvas>
+      <canvas #donutChart></canvas>
+  
+      <h1 style="color: rgb(1, 1, 1)">Comentarios</h1>
+      <ion-slides>
+        <ion-slide *ngFor="let report of comentarios">
+          <div class="slide">
+            <p>{{report}}</p>
+          </div>
+        </ion-slide>
+      </ion-slides>
+
+      <h1 style="color: rgb(1, 1, 1)">Fotos</h1>
+      <ion-slides>
+        <ion-slide *ngFor="let report of fotos">
+          <div class="slide">
+            <img [src]="report" height="50px" class="rounded">
+          </div>
+        </ion-slide>
+      </ion-slides>
+    </div>
+  </div>   
+</ion-content>
+
+<!-- Spinner -->
+<ngx-spinner 
+  type=null 
+  template="<img src='assets/spinner_fueguito.gif' height='125'/>">
+  <p style="color: rgb(0, 0, 0)" > Cargando... </p>
+</ngx-spinner>
