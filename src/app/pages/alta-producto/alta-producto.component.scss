@@ -1,0 +1,35 @@
+
+  .input-wrapper {
+    --background: #fdf0d5;
+    color:  #333333
+  }
+
+  ion-item{
+      margin-top: 2em
+  }
+
+  form{
+    padding-left: 10px;
+    padding-right: 10px;
+    small{
+        color: red;
+    }
+  }
+
+  .image-item{
+      --background: transparent
+  }
+
+  .image-default{
+      img{
+        height: 5em;
+      }
+  }
+
+  .uploaded-images{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+
+  
