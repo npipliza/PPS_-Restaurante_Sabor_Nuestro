@@ -16,7 +16,8 @@
 ✔ Alta mesa -                                     Macarena (terminado)  
 ✔ Alta producto -                                 Macarena (en proceso)  
 ✔ Subida de fotos a Firestorage -                 Macarena (terminado) 
-✔ Encuesta cliente -                              Nadia    (en proceso) 
+✔ Encuesta cliente -                              Nadia    (terminado) 
+✔ Estadisticas cliente -                          Nadia    (terminado) 
 ✔ Encuesta empleado -                             Macarena (terminado)   
 ✔ Encuesta supervisor -                           Macarena (terminado)   
 ✔ Ingreso del local -                             Nadia    (terminado) 
@@ -25,28 +26,28 @@
 ✔ QR de la mesa -                                 Macarena (terminado)  
 
 ## 🖥 Segunda semana  
-✔ Envio de correo electrónico -                   Macarena (en proceso)  
+✔ Envio de correo electrónico -                   Macarena (terminado)  
 ✔ Asignación de mesa -                            Macarena (en proceso)   
 ✔ Solicitar pedido -                              Nadia    (en proceso)   
 ✔ Carrito de productos solicitados -              Nadia    (en proceso)  
 ✔ Sector bartender -                              Macarena (en proceso)  
 ✔ Mostrar tiempo estimado del pedido -            Nadia    (en proceso)  
 ✔ Preparar pedido y entregar pedido al mozo -     Macarena (en proceso)  
-✔ Dueño/supervisor habilita entrada de clientes - Nadia    (en proceso)  
+✔ Dueño/supervisor habilita entrada de clientes - Nadia    (terminado)  
 ✔ Metre habilita entrada de la lista de espera -  Macarena (en proceso)  
 ✔ 3 Push Notifications -                          Macarena (en proceso)  
 ✔ 2 Push Notifications -                          Nadia    (en proceso)    
 
 ## 🖥 Tercera semana   
-✔ Chat -                                          Nadia    (en proceso) 
+✔ Chat -                                          Nadia    (terminado) 
 ✔ Listado pedidos del mozo -                      Macarena (en proceso) 
 ✔ Listado pedidos del cocinero -                  Nadia    (en proceso) 
 ✔ Cuenta del pedido -                             Macarena (en proceso)
 ✔ Sección post pedido -                           Nadia    (en proceso)  
 ✔ Sección estado del pedido -                     Macarena (en proceso)  
-✔ Estilos -                                       Macarena y Nadia  
-✔ Sonido paginas -                                Nadia    (en proceso)  
-✔ Vibraciones en errores -                        Macarena (en proceso) 
+✔ Estilos -                                       Macarena y Nadia (terminado) 
+✔ Sonido paginas -                                Nadia    (terminado)  
+✔ Vibraciones en errores -                        Macarena (terminado) 
 
 
 ## Interfaz 
