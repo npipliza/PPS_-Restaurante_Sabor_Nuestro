@@ -14,7 +14,7 @@
 ✔ Alta supervisor -                               Nadia    (terminado) 
 ✔ Alta cliente -                                  Nadia    (terminado)   
 ✔ Alta mesa -                                     Macarena (terminado)  
-✔ Alta producto -                                 Macarena (en proceso)  
+✔ Alta producto -                                 Macarena (terminado)  
 ✔ Subida de fotos a Firestorage -                 Macarena (terminado) 
 ✔ Encuesta cliente -                              Nadia    (terminado) 
 ✔ Estadisticas cliente -                          Nadia    (terminado) 
