@@ -35,10 +35,8 @@ export class AuthService {
       })
     );
     this.dbRef = this.afStore.collection("users");
-    //console.log(this.user$)
   }
 
-  // Login in with email/password
   SignIn(email, password) {
     return this.ngFireAuth.signInWithEmailAndPassword(email, password);
   }
@@ -47,8 +45,6 @@ export class AuthService {
     return this.ngFireAuth.createUserWithEmailAndPassword(email,password);
   }
   
-
-  // Recover password
   PasswordRecover(passwordResetEmail) {
     return this.ngFireAuth
       .sendPasswordResetEmail(passwordResetEmail)
@@ -62,17 +58,15 @@ export class AuthService {
       });
   }
 
-  // Returns true when user is looged in
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem("userData"));
     return user !== null && user.emailVerified !== false ? true : false;
   }
 
-  // Sign-out
   async SignOut(param?:boolean) {
     if(!param){
       var sound = new Howl({
-        src: ['../assets/sounds/adios-adios.mp3']
+        src: ['../assets/adios.mp3']
       });
     }
     

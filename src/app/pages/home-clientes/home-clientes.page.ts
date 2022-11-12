@@ -79,12 +79,67 @@ export class HomeClientesPage implements OnInit {
 
   SetQrBtnText():string{
     let text;
-    if (!this.isOnEspera && !this.isOnMesa) {
-      text = "Escanee el QR para ponerse en lista de espera";
+     if (!this.isOnEspera && !this.isOnMesa) {
+      text = "Escanear QR para ponerse en lista de espera.";
     }
-    else{
-      text = "Escanear Qr mesa";
+     else if (!this.isOnMesa){
+      text = "Escanear QR mesa.";
     }
+    else if (this.currentMesaCliente.estado == eEstadoMesaCliente.PENDIENTE){
+      text="espere a el metre";
+      
+    } 
+    else if (this.currentMesaCliente.estado == eEstadoMesaCliente.ESPERANDO_PEDIDO) {
+      text="esperando pedido";
+      this.showChatBtn = true;
+      this.showDetalleBtn = true;
+      this.showGamesBtn = true;
+      this.showEncuestaBtn = true;
+      this.showStatsBtn = true;
+      this.spinner.hide();
+    }
+    else if (this.currentMesaCliente.estado == eEstadoMesaCliente.SENTADO) {
+      text="bienvenido a su mesa";
+      this.showCartaBtn = true;
+      this.showChatBtn = true;
+      this.spinner.hide();
+    }
+    
+    else if(this.currentMesaCliente.estado == eEstadoMesaCliente.PEDIDO_ENTREGADO) {
+      text="pedido entregado";
+      this.showChatBtn = true;
+      this.showDetalleBtn = true;
+      this.showGamesBtn = true;
+      this.showEncuestaBtn = true;
+      this.showStatsBtn = true;
+      this.spinner.hide();
+    }
+    else if(this.currentMesaCliente.estado == eEstadoMesaCliente.COMIENDO) {
+      text="buen provecho";
+      this.showChatBtn = true;
+      this.showDetalleBtn = true;
+      this.showGamesBtn = true;
+      this.showEncuestaBtn = true;
+      this.showStatsBtn = true;
+      this.spinner.hide();
+    }
+    else if(this.currentMesaCliente.estado == eEstadoMesaCliente.PAGANDO) {
+      text="pagando";
+      this.showDetalleBtn = true;
+      this.showEncuestaBtn = true;
+      this.showChatBtn = true;
+      this.showStatsBtn = true;
+      this.spinner.hide();
+    }
+     else if (this.currentMesaCliente.estado == eEstadoMesaCliente.CONFIRMANDO_PEDIDO) {
+      text="esperando pedido";
+      this.showGamesBtn = true;
+      this.showChatBtn = true;
+      this.showDetalleBtn = true;
+      this.spinner.hide();
+    }
+   
+   
     return text;
   }
 
@@ -135,7 +190,7 @@ export class HomeClientesPage implements OnInit {
         break;
       default:
           this.vibration.vibrate(1500);
-          this.toastSrv.presentToast("El código escaneado es inválido", 2500, "danger")
+          this.toastSrv.presentToast("El código escaneado es inválido.", 2500, "danger")
         break;
     }
   }
@@ -149,13 +204,13 @@ export class HomeClientesPage implements OnInit {
         this.ResolveActionInMesa();
       } else {
         this.spinner.hide();        
-        this.toastSrv.presentToast("Por favor, no escanee códigos de otras mesas", 2500, "danger");
+        this.toastSrv.presentToast("El QR corresponde a otra mesa.", 2500, "danger");
         this.vibration.vibrate(1500);
       }
     }
     else{
       this.spinner.hide();      
-      this.toastSrv.presentToast("Por favor, póngase en lista de espera", 2500, "danger");
+      this.toastSrv.presentToast("Por favor, póngase en lista de espera.", 2500, "danger");
       this.vibration.vibrate(1500);
     }
 
@@ -203,6 +258,11 @@ export class HomeClientesPage implements OnInit {
       this.showStatsBtn = true;
       this.spinner.hide();
     }
+    else if (this.currentMesaCliente.estado == eEstadoMesaCliente.PENDIENTE) {
+     
+      this.spinner.hide();
+    }
+
     
 
   }
@@ -211,11 +271,11 @@ export class HomeClientesPage implements OnInit {
     this.spinner.hide();
     if (!this.isOnEspera) {
       this.mesasSrv.SolicitarMesa(this.currentUser);
-      this.toastSrv.presentToast("Se ingresó a lista de espera con éxito", 2500, "success");
+      this.toastSrv.presentToast("¡Ingresó a lista de espera con éxito!", 2500, "success");
       this.pushSrv.sendNotification("Hay nuevos clientes en lista de espera",this.currentUser.nombre + " ingreso a la lista de espera.",'mozo')
     } else {
       this.vibration.vibrate(1500);
-      this.toastSrv.presentToast("Usted ya se encuentra en lista de espera", 2000,'warning');
+      this.toastSrv.presentToast("Usted ya se encuentra en lista de espera.", 2000,'warning');
     }
   }
 
@@ -226,10 +286,10 @@ export class HomeClientesPage implements OnInit {
           this.mesasSrv.ActualizarMesaEstado(this.docID_Mesa, eEstadoMesa.OCUPADA);
           this.mesasSrv.AsignarMesaCliente(nro_mesa, this.docID_Mesa, this.currentUser.uid);
           this.mesasSrv.EliminarClienteListaEspera(this.espera_docid);
-          this.showCartaBtn = true;
-          this.showChatBtn = true;
+          this.showCartaBtn = false;
+          this.showChatBtn = false;
           this.spinner.hide();
-          this.toastSrv.presentToast("Ingresaste a la mesa " + nro_mesa, 2000,'success');
+          this.toastSrv.presentToast("Tenes pendiente la mesa " + nro_mesa, 2000,'success');
       } else {
         this.spinner.hide();
         
@@ -263,7 +323,7 @@ export class HomeClientesPage implements OnInit {
 
     this.mesaCliente.forEach(mc => {
       if (mc.nro_mesa == nro_mesa) {
-        if (mc.estadoMesaCliente == eEstadoMesaCliente.SENTADO) {
+        if (mc.estadoMesaCliente == eEstadoMesaCliente.PENDIENTE) {
           retorno = false;
         }
       }
@@ -288,14 +348,14 @@ export class HomeClientesPage implements OnInit {
       this.router.navigate(['cliente/game']);
     }
     else{
-      this.toastSrv.presentToast("Usted ya participo del juego..", 2500, "warning")
+      this.toastSrv.presentToast("Ya participaste del juego..", 2500, "warning")
     }
   }
 
   goToEncuesta(){
     if(this.currentMesaCliente.hasEncuesta){
       this.vibration.vibrate(1500);
-      this.toastSrv.presentToast("Usted ya ha completado la encuesta", 2000,'warning');
+      this.toastSrv.presentToast("Ya completaste la encuesta", 2000,'warning');
     }else{
       this.router.navigate(['cliente/encuesta', {mesaClienteId: this.currentMesaCliente.doc_id}]);
     }

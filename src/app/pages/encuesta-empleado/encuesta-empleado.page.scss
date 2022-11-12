@@ -1,0 +1,62 @@
+#fondo {
+    background: rgb(255, 189, 0);  
+    position: sticky;
+   top: 10px;
+   left: 50px;
+   text-align: center;
+  }
+
+.fondof {
+    --background: rgb(255, 189, 0);  
+  }
+
+form{
+    padding: 10px 10px 10px 10px;
+    .card{
+        display:flex;
+        background: wheat;
+        margin-top: 1em;
+        flex-direction: column;
+    }
+}
+
+ion-row{
+    .hiddenItems {
+        height: 30px;
+        small {
+          margin-bottom: 7px;
+          color: var(--ion-color-danger);
+          font-weight: 700;
+          font-size: 14px;
+          align-self: center;
+          margin-left: 0.5em;
+        }
+    }
+}
+
+.spinner{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 50%;
+}
+
+.ok{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2em;
+    img{
+        height: 10em;
+        margin-bottom: 2em;
+        margin-top: 2em;
+    }
+    .title{
+        font-size: 2em;
+    }
+    .sub{
+        font-size: 1.5em;
+        text-align: -webkit-center;
+    }
+}

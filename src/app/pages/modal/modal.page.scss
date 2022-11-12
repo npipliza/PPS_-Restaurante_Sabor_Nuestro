@@ -1,0 +1,42 @@
+ion-toolbar{
+    ion-icon{
+        font-size: 2em;
+        margin-right: 0.5em;
+    }
+}
+.remove{
+    margin-right: 0.5em;
+    font-size: 2em;
+}
+.add{
+    margin-left: 0.5em;
+    font-size: 2em;
+}
+strong{
+    font-size: 1.5em;
+}
+
+.detail{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    ion-row{
+        margin-top: 1em;
+    }
+    .buttons{
+        margin-top: 1em;
+        display: flex;
+        align-items: center;
+    }
+}
+#fondo {
+    background: rgb(255, 189, 0);  
+    position: sticky;
+   top: 10px;
+   left: 50px;
+   text-align: center;
+  }
+
+.fondof {
+    --background: rgb(255, 189, 0);  
+  }

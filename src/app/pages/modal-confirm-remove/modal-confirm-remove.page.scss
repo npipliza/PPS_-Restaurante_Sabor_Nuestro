@@ -1,0 +1,17 @@
+ion-toolbar{
+    ion-icon{
+        font-size: 2em;
+        margin-right: 0.5em;
+    }
+}
+#fondo {
+    background: rgb(255, 189, 0);  
+    position: sticky;
+   top: 10px;
+   left: 50px;
+   text-align: center;
+  }
+  
+  .fondof {
+    --background: rgb(255, 189, 0);  
+  }

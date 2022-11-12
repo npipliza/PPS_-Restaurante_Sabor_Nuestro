@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar color="light toolbar">
+    <ion-back-button (click)="return()" slot="start"></ion-back-button>
+    <ion-button color="light" slot="end" style="margin-right: 1em;" (click)="logout()">
+      <ion-icon name="log-out-outline"></ion-icon>
+     
+    </ion-button>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="fondof">
+  <div class="container mt-3 mb-3 h-100">
+    <img src="../../../assets/icon/asignar_mesas.jpeg">
+    <div class="row mb-1">
+      <div class="col text-center mb-3">
+        <h3 class="text-muted" *ngIf="clientes.length == 0">No hay Clientes pendientes de aprobación</h3>
+      </div>      
+    </div>
+
+    <ion-list *ngFor="let item of clientes">
+      <ion-item color="light rounded">
+        <ion-avatar slot="start">
+          <img src="https://cdn-icons-png.flaticon.com/512/4989/4989175.png">
+        </ion-avatar>
+        <ion-label>
+          <h2>Mesa: {{item.user.nro_mesa}}</h2>
+          <h3>{{item.user.estado}}</h3>
+        </ion-label>
+        <ion-avatar slot="end" class="m-1" (click)="aceptarCliente(false, item)">
+          <ion-icon class="red" name="close-circle-outline" size="large"></ion-icon>          
+        </ion-avatar>
+        <ion-avatar slot="end" class="m-1" (click)="aceptarCliente(true, item)">
+          <ion-icon class="green" name="checkmark-circle-outline" size="large"></ion-icon>
+        </ion-avatar>
+      </ion-item>
+    </ion-list>
+
+  </div>
+</ion-content>

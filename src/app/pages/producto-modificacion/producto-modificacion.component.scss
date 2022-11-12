@@ -1,0 +1,29 @@
+ion-list{
+    background:none;
+    ion-item{
+        --background: none;
+        ion-label{
+            margin-left: 1em;
+        }
+    }
+}
+
+.edit{
+    color: black;
+    margin-right: 1em;
+}
+
+.remove{
+    color: red;
+}
+#fondo {
+    background: rgb(255, 189, 0);  
+    position: sticky;
+   top: 10px;
+   left: 50px;
+   text-align: center;
+  }
+  
+  .fondof {
+    --background: rgb(255, 189, 0);  
+  }
