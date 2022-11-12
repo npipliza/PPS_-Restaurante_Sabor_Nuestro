@@ -53,17 +53,13 @@
 ## Interfaz 
 
 <p  align="center">
-<img src='readmeFotos/f1.png' width='200'>
+<img src='readmeFotos/foto1.png' width='200'>
 </p>
 
 <p  align="center">
-<img src='readmeFotos/f2.png' width='200'>
+<img src='readmeFotos/foto2.png' width='200'>
 </p>
 
 <p  align="center">
-<img src='readmeFotos/f3.png' width='200'>
-</p>
-
-<p  align="center">
-<img src='readmeFotos/f4.png' width='200'>
+<img src='readmeFotos/foto3.png' width='200'>
 </p>
